@@ -28,6 +28,7 @@ function once(callback) {
   return run;
 }
 
+//This is a function that you can only run your callback function multiple times unitl given amount hits 0 and you can initilize num to reload in x amount ms
 function reloadable(callback, amount, delay) {
     let num = amount;
     
@@ -48,7 +49,3 @@ function reloadable(callback, amount, delay) {
 
     return run;
 }
-
-const fnc = reloadable(function(num){
-    console.log(num);
-}, 3,3000);
