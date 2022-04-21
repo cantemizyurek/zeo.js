@@ -28,7 +28,7 @@ function once(callback) {
   return run;
 }
 
-//This is a function that you can only run your callback function multiple times unitl given amount hits 0 and you can initilize num to reload in x amount ms
+//This is a function that you can only run your callback function multiple times unitl given amount hits 0 and you can initilize num to reload in x amount ms and you can run your onReload function when x amount ms pases;
 function reloadable(callback, onReload, amount, delay) {
   let num = amount;
   let ondelay = false;
