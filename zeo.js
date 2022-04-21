@@ -29,22 +29,32 @@ function once(callback) {
 }
 
 //This is a function that you can only run your callback function multiple times unitl given amount hits 0 and you can initilize num to reload in x amount ms
-function reloadable(callback, amount, delay) {
+function reloadable(callback, onReload, amount, delay) {
   let num = amount;
+  let ondelay = false;
 
   function run() {
+    num--;
+
     if (num <= 0) {
       if (delay || delay === 0) {
-        setTimeout(() => {
-          num = amount;
-        }, delay);
+        if (!ondelay) {
+          ondelay = true;
+          callback();
+          setTimeout(() => {
+            onReload(num);
+            num = amount;
+            ondelay = false;
+          }, delay);
+        }
       } else {
+        callback();
+        onReload();
         num = amount;
       }
     } else {
       callback(num);
     }
-    num--;
   }
 
   return run;
