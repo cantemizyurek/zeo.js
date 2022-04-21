@@ -65,3 +65,23 @@ function loopableArray(arr) {
 
   return run;
 }
+
+//This is a function that you can pass a callback function that will be called if conditionToRun is true every x loopDuration and you can cancel the loop by giving an endIntervalCondition
+function effect(callback, conditionToRun, loopDuration, endIntervalCondition) {
+  let runs = 0;
+
+  function run() {
+    const interval = setInterval(() => {
+      if (conditionToRun(runs)) {
+        runs++;
+        callback(runs, interval);
+      }
+
+      if (endIntervalCondition(runs)) {
+        clearInterval(interval);
+      }
+    }, loopDuration);
+  }
+
+  return run;
+}
