@@ -40,16 +40,16 @@ function reloadable(callback, onReload, amount, delay) {
       if (delay || delay === 0) {
         if (!ondelay) {
           ondelay = true;
-          callback();
+          callback(num);
           setTimeout(() => {
-            onReload(num);
             num = amount;
+            onReload(num);
             ondelay = false;
           }, delay);
         }
       } else {
-        callback();
-        onReload();
+        callback(num);
+        onReload(num);
         num = amount;
       }
     } else {
